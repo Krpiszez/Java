@@ -1,0 +1,8 @@
+Exception is parent class of lots of exception classes like ArithmeticException NullPointerException... Exception is unexpected things. For example you are planning
+to go for a trip and you checked your car and everything is in perfect condition, like tires gas and oil etc. But on your way your tire got flat so this was
+unexpected. When exception occurs the application is blocked and codes will not be keep executing. To prevent that there is try - catch blocks we use try catch blocks
+to prevent app to be blocked. First the code we want to executed we type it in try and in catch parenthesis we type the possible exception according to our
+method. A try block cannot be used without a catch block at least but it can work with multiple catch blocks. There might be more than 1 exceptions in a single task
+for scenarios like that Exception itself can be used in catch block.. Exception is parent of child exception classes so it will include the exception and 
+.getMessage() method will return the exception message of whatever the exception is. After using try- catch block the related code will give the error as output or 
+execute the codes that you typed inside catch block body then it goes on to execute other codes.
