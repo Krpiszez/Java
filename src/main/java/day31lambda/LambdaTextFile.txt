@@ -1,0 +1,4 @@
+Java is about to end.
+If you get used to use Lambda everything will be easy.
+Using Lambda means using appropriate methods.
+Be sure, everyone in Java will use Lambda by the time.

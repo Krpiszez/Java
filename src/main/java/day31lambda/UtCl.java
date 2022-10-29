@@ -25,4 +25,12 @@ public class UtCl {
     public static char getLastChar(String s){
         return s.charAt(s.length()-1);
     }
+    public static int sumOfDigit (int a){
+        int sum = 0;
+        while(a!=0) {
+            sum+=a%10;
+            a/=10;
+        }
+        return sum;
+    }
 }

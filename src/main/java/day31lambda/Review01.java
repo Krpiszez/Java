@@ -72,4 +72,7 @@ public class Review01 {
         Integer min = list.stream().distinct().filter(t-> t>7 && t%2==0).sorted(Comparator.reverseOrder()).reduce(Integer.MAX_VALUE, (t, u) -> u);
         System.out.println(min);
     }
+
+
+
 }
