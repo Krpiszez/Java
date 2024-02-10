@@ -29,7 +29,7 @@ public class LambdaString {
         printWithSpace(l);
         System.out.println();
         System.out.println(wordStartWithDC(l));
-        printAddingAst(l);
+//        printAddingAst(l);
         System.out.println();
         orderAlfabe(l);
 //        deleteL(l);
@@ -47,9 +47,9 @@ public class LambdaString {
         return l.stream().filter(t-> t.startsWith("c")||t.startsWith("d")).collect(Collectors.toList());
     }
 
-    public static void printAddingAst(List<String> l){
-        l.stream().forEach(UtilsClass::printInTheSameLineWithAst);
-    }
+//    public static void printAddingAst(List<String> l){
+//        l.stream().forEach(UtilsClass::printInTheSameLineWithAst);
+//    }
 
     public static void orderAlfabe(List<String> l){
         l.stream().sorted().forEach(UtilsClass::printInTheSameLineWithASpace);

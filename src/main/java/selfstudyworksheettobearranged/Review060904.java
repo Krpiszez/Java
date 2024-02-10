@@ -1,6 +1,5 @@
 package selfstudyworksheettobearranged;
 
-import com.consol.citrus.functions.core.UpperCaseFunction;
 
 import java.util.Scanner;
 

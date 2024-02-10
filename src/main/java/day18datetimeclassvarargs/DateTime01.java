@@ -1,6 +1,5 @@
 package day18datetimeclassvarargs;
 
-import org.springframework.cglib.core.Local;
 
 import java.time.*;
 import java.time.format.DateTimeFormatter;

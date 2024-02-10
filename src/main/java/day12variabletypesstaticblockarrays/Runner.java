@@ -1,7 +1,5 @@
 package day12variabletypesstaticblockarrays;
 
-import io.cucumber.java.zh_cn.假如;
-
 public class Runner {
 
     public static void main(String[] args) {
