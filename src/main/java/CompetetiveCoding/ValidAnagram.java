@@ -1,12 +1,35 @@
 package CompetetiveCoding;
 
 import java.util.Arrays;
+import java.util.HashMap;
 
 public class ValidAnagram {
 
     public static void main(String[] args) {
 
-        System.out.println(isAnagram("arnagram", "nagaram"));
+        System.out.println(isAnagram("arnagam", "nagaram"));
+        System.out.println(isAnagramMap("anagram", "nagaram"));
+
+    }
+
+    public static boolean isAnagramMap(String s, String t) {
+
+        if (s.length() != t.length()) {
+            return false;
+        }
+
+        HashMap<Character, Integer> charMap = new HashMap<>();
+
+        for (char ch : s.toCharArray()) {
+            charMap.put(ch, charMap.getOrDefault(ch, 0) + 1);
+        }
+
+        for (char ch : t.toCharArray()) {
+            if (charMap.get(ch) == 0 || !charMap.containsKey(ch)) return false;
+            charMap.put(ch, charMap.get(ch) - 1);
+        }
+
+        return true;
 
     }
 
