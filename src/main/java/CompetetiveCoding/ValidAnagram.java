@@ -9,6 +9,28 @@ public class ValidAnagram {
 
         System.out.println(isAnagram("arnagam", "nagaram"));
         System.out.println(isAnagramMap("anagram", "nagaram"));
+        System.out.println(isAnagramArr("anaggram", "nagaram"));
+
+    }
+
+    public static boolean isAnagramArr(String s, String t) {
+
+        if (s.length() != t.length()) {
+            return false;
+        }
+
+        int[] countArr = new int[26];
+
+        for (int i = 0; i < s.length(); i++) {
+            countArr[s.charAt(i) - 'a']++;
+            countArr[t.charAt(i) - 'a']--;
+        }
+
+        for (int count : countArr) {
+            if (count != 0) return false;
+        }
+
+        return true;
 
     }
 
