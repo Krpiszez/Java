@@ -1,6 +1,7 @@
 package CompetetiveCoding;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Stack;
 
@@ -8,25 +9,27 @@ public class WordBreak {
 
     public static void main(String[] args) {
         ArrayList<String> list = new ArrayList<>();
-        list.add("cats");
-        list.add("dog");
-        list.add("sand");
-        list.add("and");
-        list.add("cat");
-        System.out.println(wordBreak("catsandog", list));
+        list.add("apple");
+        list.add("pen");
+        System.out.println(wordBreak("applepenapple", list));
     }
 
     public static boolean wordBreak(String s, List<String> wordDict) {
 
-        for (String str : wordDict) {
-            if (s.contains(str)) {
-                s = s.replaceAll(str, "");
-            } else {
-                return false;
+        boolean[] dp = new boolean[s.length() + 1];
+        HashSet<String> wordSet = new HashSet<>(wordDict);
+        dp[0] = true;
+
+        for (int len = 1; len <= s.length(); len++) {
+            for (int ch = 0; ch < len; ch++) {
+                if (dp[ch] && wordSet.contains(s.substring(ch, len))) {
+                    dp[len] = true;
+                    break;
+                }
             }
         }
 
-        return true;
+        return dp[s.length()];
 
     }
 }
