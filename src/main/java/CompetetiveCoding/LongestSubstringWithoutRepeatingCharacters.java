@@ -1,9 +1,6 @@
 package CompetetiveCoding;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class LongestSubstringWithoutRepeatingCharacters {
 
@@ -11,6 +8,7 @@ public class LongestSubstringWithoutRepeatingCharacters {
         System.out.println(lengthOfLongestSubstring("abcasbavcsaazxcweqswg"));
         System.out.println(lengthOfLongestSubstringBrute("abcasbavcsaazxcweqswg"));
         System.out.println(lengthOfLongestSubstringBest("abcasbavcsaazxcweqswg"));
+        System.out.println(lengthOfLongestSubstringMap("abcasbavcsaazxcweqswg"));
     }
 
     public static int lengthOfLongestSubstring(String s){
@@ -56,10 +54,24 @@ public class LongestSubstringWithoutRepeatingCharacters {
         int[] arr = new int[128];
 
         for (int start = 0, end = 0; end < s.length(); end++) {
-            int curr = s.charAt(end);
+            char curr = s.charAt(end);
             start = Math.max(start, arr[curr]);
             max = Math.max(max, end - start + 1);
             arr[curr] = end + 1;
+        }
+        return max;
+    }
+
+    public static int lengthOfLongestSubstringMap(String s){
+
+        int max = 0;
+        HashMap<Character, Integer> map = new HashMap<>();
+
+        for (int start = 0, end = 0; end < s.length(); end++) {
+            char curr = s.charAt(end);
+            start = Math.max(start, map.getOrDefault(curr, 0));
+            max = Math.max(max, end - start + 1);
+            map.put(curr, end + 1);
         }
         return max;
     }
