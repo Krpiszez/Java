@@ -48,9 +48,20 @@ public class Fibonacci {
     }
 
     public static void main(String[] args) {
+        Map<Long, Long> localMap = new HashMap<>();
         System.out.println(sum(50));
+        System.out.println(sum(50, localMap));
         System.out.println(fibo(50));
-        System.out.println(fiboMap);
         System.out.println(coinChange(new int[]{1,2,5}, 11));
+    }
+
+    private static long sum(long n, Map<Long, Long> localMap) {
+        if (n <= 1) return n;
+        if (localMap.containsKey(n)) {
+            return localMap.get(n);
+        }
+        long result = sum(n - 1) + sum(n - 2);
+        localMap.put(n, result);
+        return result;
     }
 }
