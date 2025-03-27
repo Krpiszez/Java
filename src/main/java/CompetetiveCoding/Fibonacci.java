@@ -32,6 +32,19 @@ public class Fibonacci {
         return b;
     }
 
+    public static long fiboTabulation(int n) {
+
+        long[] arr = new long[n+2];
+        arr[1] = 1;
+
+        for (int i = 0; i < n; i++) {
+            arr[i+1] += arr[ i];
+            arr[i+2] += arr[ i];
+        }
+
+        return arr[n];
+    }
+
     public static int coinChange(int[] coins, int amount) {
         int INF = amount + 1; // Use an upper bound for impossible cases
         int[] dp = new int[amount + 1];
@@ -50,8 +63,9 @@ public class Fibonacci {
     public static void main(String[] args) {
         Map<Long, Long> localMap = new HashMap<>();
         System.out.println(sum(50));
-        System.out.println(sum(50, localMap));
+        System.out.println(sum(50 , localMap));
         System.out.println(fibo(50));
+        System.out.println(fiboTabulation(50));
         System.out.println(coinChange(new int[]{1,2,5}, 11));
     }
 
