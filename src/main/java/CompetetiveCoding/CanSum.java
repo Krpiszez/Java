@@ -41,4 +41,14 @@ public class CanSum {
         map.put(target, false);
         return false;
     }
+
+    private static boolean canSumTabulation(int[] nums, int target) {
+
+        boolean[] arr = new boolean[target + 1];
+
+        for (int num : nums) {
+            int remainder = target - num;
+        }
+        return false;
+    }
 }

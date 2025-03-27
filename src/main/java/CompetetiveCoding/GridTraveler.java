@@ -11,6 +11,7 @@ public class GridTraveler {
         HashMap<String, Long> map = new HashMap<>();
 
         System.out.println(gridTraveler(map, 18,18));
+        System.out.println(gridTravelerTabulation(4,5));
 
     }
 
@@ -24,6 +25,22 @@ public class GridTraveler {
 
         map.put(id, retVal);
         return retVal;
+    }
+
+    private static long gridTravelerTabulation(int row, int col) {
+
+        long[][] arr = new long[row + 2][col + 2];
+        arr[1][1] = 1;
+
+        for (int i = 0; i <= row; i++) {
+            for (int j = 0; j <= col; j++) {
+                long current = arr[i][j];
+                arr[i][j+1] += current;
+                arr[i+1][j] += current;
+            }
+        }
+
+        return arr[row][col];
     }
 
 }
