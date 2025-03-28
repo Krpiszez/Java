@@ -1,8 +1,6 @@
 package CompetetiveCoding;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class HowSum {
 
@@ -15,14 +13,19 @@ public class HowSum {
         int[] nums4 = new int[]{2,3,5};
         int[] nums5 = new int[]{7,14};
         System.out.println(Arrays.toString(howSum(nums, 7)));
+        System.out.println(howSumTabulation(nums, 7));
         memo.clear();
         System.out.println(Arrays.toString(howSum(nums2, 7)));
+        System.out.println(howSumTabulation(nums2, 7));
         memo.clear();
         System.out.println(Arrays.toString(howSum(nums3, 7)));
+        System.out.println(howSumTabulation(nums3, 7));
         memo.clear();
         System.out.println(Arrays.toString(howSum(nums4, 8)));
+        System.out.println(howSumTabulation(nums4, 8));
         memo.clear();
         System.out.println(Arrays.toString(howSum(nums5, 300)));
+        System.out.println(howSumTabulation(nums5, 300));
         memo.clear();
     }
 
@@ -43,5 +46,27 @@ public class HowSum {
         }
         memo.put(target, null);
         return null;
+    }
+
+    private static List<Integer> howSumTabulation(int[] nums, int target) {
+
+        List<List<Integer>> table = new ArrayList<>(Collections.nCopies(target + 1, null));
+        table.set(0, new ArrayList<>()); // base case
+
+        for (int i = 0; i <= target; i++) {
+            if (table.get(i) != null) {
+                for (int num : nums) {
+                    int next = i + num;
+                    if (next <= target) {
+                        List<Integer> newCombination = new ArrayList<>(table.get(i));
+                        newCombination.add(num);
+                        table.set(next, newCombination);
+                    }
+                }
+            }
+        }
+
+        return table.get(target);
+
     }
 }
