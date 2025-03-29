@@ -8,13 +8,17 @@ public class CanConstruct {
         CanConstruct canConstruct = new CanConstruct();
         HashMap<String, Boolean> memo = new HashMap<>();
 
-        System.out.println(canConstruct.canConstruct(memo, "skateboard", new String[]{"bo", "rd", "ate", "t", "ska", "sk", "boar"}));
-        memo.clear();
+//        System.out.println(canConstruct.canConstruct(memo, "skateboard", new String[]{"bo", "rd", "ate", "t", "ska", "sk", "boar"}));
+//        System.out.println(canConstruct.canConstructTabulation("skateboard", new String[]{"bo", "rd", "ate", "t", "ska", "sk", "boar"}));
+//        memo.clear();
         System.out.println(canConstruct.canConstruct(memo, "abcdef", new String[]{"ab", "abc", "cd", "def", "abcd"}));
+        System.out.println(canConstruct.canConstructTabulation("abcdef", new String[]{"ab", "abc", "cd", "def", "abcd"}));
         memo.clear();
         System.out.println(canConstruct.canConstruct(memo, "enterapotentpot", new String[]{"a", "p", "ent", "enter", "ot", "o", "t"}));
+        System.out.println(canConstruct.canConstructTabulation("enterapotentpot", new String[]{"a", "p", "ent", "enter", "ot", "o", "t"}));
         memo.clear();
         System.out.println(canConstruct.canConstruct(memo, "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeef", new String[]{"e", "ee", "eee", "eeee", "eeeee", "eeeeee", "eeeeeee"}));
+        System.out.println(canConstruct.canConstructTabulation("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeef", new String[]{"e", "ee", "eee", "eeee", "eeeee", "eeeeee", "eeeeeee"}));
         memo.clear();
     }
 
@@ -34,5 +38,24 @@ public class CanConstruct {
         }
         memo.put(abcdef, false);
         return false;
+    }
+
+    private boolean canConstructTabulation(String abcdef, String[] strings) {
+
+        boolean[] table = new boolean[abcdef.length()+1];
+        table[0] = true;
+
+        for (int i = 0; i <= abcdef.length(); i++) {
+            if (table[i]) {
+                for (String str : strings) {
+                    if (i + str.length() <= abcdef.length() &&
+                            abcdef.substring(i, i + str.length()).equals(str)) {
+                        table[i + str.length()] = true;
+                    }
+                }
+            }
+        }
+
+        return table[abcdef.length()];
     }
 }
