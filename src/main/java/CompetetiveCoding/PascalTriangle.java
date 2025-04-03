@@ -18,7 +18,7 @@ public class PascalTriangle {
         row.add(1);
         returnList.add(row);
 
-        for (int i = 1; i < numRows - 1; i++) {
+        for (int i = 1; i <= numRows - 1; i++) {
             List<Integer> previousRow = returnList.get(i-1);
             List<Integer> currentRow = new ArrayList<>();
             currentRow.add(1);
