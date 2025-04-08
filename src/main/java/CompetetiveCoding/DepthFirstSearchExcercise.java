@@ -9,12 +9,13 @@ public class DepthFirstSearchExcercise {
         DepthFirstSearchExcercise dfse = new DepthFirstSearchExcercise();
 
         dfse.depthFirstPrint(graph, 'a');
+        dfse.depthFirstPrintRecursive(graph, 'a');
     }
 
     static HashMap<Character, char[]> graph = new HashMap<>();
 
     static {
-        graph.put('a', new char[]{'b', 'c'});
+        graph.put('a', new char[]{'c', 'b'});
         graph.put('b', new char[]{'d'});
         graph.put('c', new char[]{'e'});
         graph.put('d', new char[]{'f'});
@@ -37,6 +38,16 @@ public class DepthFirstSearchExcercise {
                 stack.push(c);
             }
 
+        }
+
+    }
+
+    public void depthFirstPrintRecursive(HashMap<Character, char[]> graph, char ch) {
+
+        System.out.println(ch);
+
+        for (char neighbor : graph.get(ch)) {
+            depthFirstPrintRecursive(graph, neighbor);
         }
 
     }
