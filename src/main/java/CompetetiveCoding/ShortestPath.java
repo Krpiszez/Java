@@ -21,10 +21,35 @@ public class ShortestPath {
         HashMap<String, List<String>> graph = buildGraph(edges);
         Set<String> visited = new HashSet<>();
 
-        System.out.println(findShortestPath(graph, "e", "c", visited));
+        System.out.println(findShortestPath(graph, "a", "e", visited));
         visited.clear();
-        System.out.println(findShortestPathMap(graph, "e", "c", visited));
+        System.out.println(findShortestPathMap(graph, "a", "e", visited));
+        System.out.println(findShortestPathDFS(graph, "a", "e", visited));
 
+    }
+
+    private static int findShortestPathDFS(HashMap<String, List<String>> graph, String start, String end, Set<String> visited) {
+
+        Stack<String> stack = new Stack<>();
+        Map<String, Integer> distance = new HashMap<>();
+        distance.put(start, 0);
+        stack.push(start);
+
+        while (!stack.isEmpty()) {
+            String curr = stack.pop();
+            int currDistance = distance.get(curr);
+
+            if (curr.equals(end)) return currDistance;
+
+            for (String neighbor : graph.get(curr)) {
+                if (!distance.containsKey(neighbor)) {
+                    stack.push(neighbor);
+                    distance.put(neighbor, currDistance + 1);
+                }
+            }
+        }
+
+        return -1;
     }
 
     private static int findShortestPathMap(HashMap<String, List<String>> graph, String start, String end, Set<String> visited) {
