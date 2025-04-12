@@ -8,6 +8,18 @@ public class MyLinkedList {
     Node last;
     int size;
 
+    private static class Node {
+        int val;
+        Node left;
+        Node right;
+
+        public Node(int val, Node left, Node right) {
+            this.val = val;
+            this.left = left;
+            this.right = right;
+        }
+    }
+
     public void addFirst(int val) {
         final Node f = first;
         final Node newNode = new Node(val, null, f);
@@ -28,19 +40,6 @@ public class MyLinkedList {
         else
             f.right = newNode;
         size++;
-    }
-
-
-    private static class Node {
-        int val;
-        Node left;
-        Node right;
-
-        public Node(int val, Node left, Node right) {
-            this.val = val;
-            this.left = left;
-            this.right = right;
-        }
     }
 
     public static void main(String[] args) {
