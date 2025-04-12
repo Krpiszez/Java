@@ -21,15 +21,30 @@ public class MyNode<T> {
         MyNode<String> node3 = new MyNode<>("D");
         MyNode<String> node4 = new MyNode<>("E");
 
+        MyNode<Integer> a = new MyNode<>(2);
+        MyNode<Integer> b = new MyNode<>(38);
+        MyNode<Integer> c = new MyNode<>(3);
+        MyNode<Integer> d = new MyNode<>(-1);
+        MyNode<Integer> e = new MyNode<>(7);
+
         head.next = node1;
         node1.next = node2;
         node2.next = node3;
         node3.next = node4;
 
+        a.next = b;
+        b.next = c;
+        c.next = d;
+        d.next = e;
+
         printLinkedList(head);
         printLinkedListRecursive(head);
         System.out.println(linkedListValues(head));
         System.out.println(linkedListValuesRecursive(head));
+
+        System.out.println(sumList(a));
+        System.out.println(sumListRec(a));
+        System.out.println(sumListRecursive(a));
     }
 
     public static List<String> linkedListValuesRecursive(MyNode<String> head) {
@@ -69,5 +84,34 @@ public class MyNode<T> {
             curr = curr.next;
         }
         return returnList;
+    }
+
+    public static int sumList(MyNode<Integer> head) {
+        int sum = 0;
+
+        MyNode<Integer> current = head;
+        while (current != null) {
+            sum += current.val;
+            current = current.next;
+        }
+
+        return sum;
+    }
+
+    private static int sumListRecursive(MyNode<Integer> head) {
+        if (head == null) return 0;
+        return head.val + sumListRecursive(head.next);
+    }
+
+    public static int sumListRec(MyNode<Integer> head) {
+        int sum = 0;
+        sum += sumRec(head, sum);
+        return sum;
+    }
+
+    private static int sumRec(MyNode<Integer> next, int sum) {
+        if (next == null) return sum;
+        sum += next.val;
+        return sumRec(next.next, sum);
     }
 }
