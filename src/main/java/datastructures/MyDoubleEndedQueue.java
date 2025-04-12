@@ -1,8 +1,6 @@
 package datastructures;
 
-import java.util.LinkedList;
-
-public class MyLinkedList {
+public class MyDoubleEndedQueue {
 
     Node first;
     Node last;
@@ -43,7 +41,7 @@ public class MyLinkedList {
     }
 
     public static void main(String[] args) {
-        MyLinkedList list = new MyLinkedList();
+        MyDoubleEndedQueue list = new MyDoubleEndedQueue();
         list.addFirst(4);
         list.addLast(6);
         list.addFirst(8);
