@@ -45,6 +45,11 @@ public class MyNode<T> {
         System.out.println(sumList(a));
         System.out.println(sumListRec(a));
         System.out.println(sumListRecursive(a));
+
+        System.out.println(linkedListFind(a, 383));
+        System.out.println(linkedListFindRecursive(a, 383));
+        System.out.println(linkedListFind(head, "Ce"));
+        System.out.println(linkedListFindRecursive(head, "Ce"));
     }
 
     public static List<String> linkedListValuesRecursive(MyNode<String> head) {
@@ -60,7 +65,7 @@ public class MyNode<T> {
     }
 
     private static void printLinkedList(MyNode<String> head) {
-        MyNode current = head;
+        MyNode<String> current = head;
         while (current != null) {
             System.out.println(current.val);
             current = current.next;
@@ -113,5 +118,23 @@ public class MyNode<T> {
         if (next == null) return sum;
         sum += next.val;
         return sumRec(next.next, sum);
+    }
+
+    public static <T> boolean linkedListFind(MyNode<T> head, T target) {
+
+        MyNode<T> current = head;
+        while (current != null) {
+            if (current.val.equals(target)) return true;
+            current = current.next;
+        }
+
+        return false;
+    }
+
+    public static <T> boolean linkedListFindRecursive(MyNode<T> head, T target) {
+
+        if (head == null) return false;
+        if (head.val.equals(target)) return true;
+        return linkedListFindRecursive(head.next, target);
     }
 }
