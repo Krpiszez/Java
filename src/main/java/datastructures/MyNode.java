@@ -48,8 +48,8 @@ public class MyNode<T> {
 
         System.out.println(linkedListFind(a, 383));
         System.out.println(linkedListFindRecursive(a, 383));
-        System.out.println(linkedListFind(head, "Ce"));
-        System.out.println(linkedListFindRecursive(head, "Ce"));
+        System.out.println(linkedListFind(head, "C"));
+        System.out.println(linkedListFindRecursive(head, "C"));
     }
 
     public static List<String> linkedListValuesRecursive(MyNode<String> head) {
