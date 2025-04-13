@@ -50,6 +50,9 @@ public class MyNode<T> {
         System.out.println(linkedListFindRecursive(a, 383));
         System.out.println(linkedListFind(head, "C"));
         System.out.println(linkedListFindRecursive(head, "C"));
+
+        System.out.println(getNodeValue(head, 6));
+        System.out.println(getNodeValueRecursive(head, 6));
     }
 
     public static List<String> linkedListValuesRecursive(MyNode<String> head) {
@@ -136,5 +139,24 @@ public class MyNode<T> {
         if (head == null) return false;
         if (head.val.equals(target)) return true;
         return linkedListFindRecursive(head.next, target);
+    }
+
+    public static <T> T getNodeValue(MyNode<T> head, int index) {
+        MyNode<T> current = head;
+        int count = 0;
+
+        while (current != null) {
+            if (count == index) return current.val;
+            current = current.next;
+            count++;
+        }
+
+        return null;
+    }
+
+    public static <T> T getNodeValueRecursive(MyNode<T> head, int index) {
+        if (index == 0) return head.val;
+        if (index < 0 || head == null) return null;
+        return getNodeValueRecursive(head.next, index - 1);
     }
 }
