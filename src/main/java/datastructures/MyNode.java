@@ -1,5 +1,7 @@
 package datastructures;
 
+import org.w3c.dom.Node;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,6 +55,9 @@ public class MyNode<T> {
 
         System.out.println(getNodeValue(head, 6));
         System.out.println(getNodeValueRecursive(head, 6));
+
+        System.out.println(reverseList(head).val);
+        System.out.println(reverseListRecursive(head).val);
     }
 
     public static List<String> linkedListValuesRecursive(MyNode<String> head) {
@@ -158,5 +163,27 @@ public class MyNode<T> {
         if (index == 0) return head.val;
         if (index < 0 || head == null) return null;
         return getNodeValueRecursive(head.next, index - 1);
+    }
+
+    public static <T> MyNode<T> reverseList(MyNode<T> head) {
+        MyNode<T> current = head;
+        MyNode<T> prev = null;
+
+        while (current != null) {
+            MyNode<T> next = current.next;
+            current.next = prev;
+            prev = current;
+            current = next;
+        }
+
+        return prev;
+    }
+
+    public static <T> MyNode<T> reverseListRecursive(MyNode<T> head) {
+        if (head == null || head.next == null) return head;
+        MyNode<T> newHead = reverseListRecursive(head.next);
+        head.next.next = head;
+        head.next = null;
+        return newHead;
     }
 }
