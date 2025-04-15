@@ -17,6 +17,23 @@ public class MyNode<T> {
 
 
     public static void main(String[] args) {
+
+        MyNode<String> zipperA = new MyNode<>("A");
+        MyNode<String> zipperB = new MyNode<>("B");
+        MyNode<String> zipperC = new MyNode<>("C");
+
+        zipperA.next = zipperB;
+        zipperB.next = zipperC;
+
+        MyNode<String> zipperQ = new MyNode<>("Q");
+        MyNode<String> zipperX = new MyNode<>("X");
+        MyNode<String> zipperY = new MyNode<>("Y");
+        MyNode<String> zipperZ = new MyNode<>("Z");
+
+        zipperQ.next = zipperX;
+        zipperX.next = zipperY;
+        zipperY.next = zipperZ;
+
         MyNode<String> head = new MyNode<>("A");
         MyNode<String> node1 = new MyNode<>("B");
         MyNode<String> node2 = new MyNode<>("C");
@@ -58,6 +75,11 @@ public class MyNode<T> {
 
         System.out.println(reverseList(head).val);
         System.out.println(reverseListRecursive(head).val);
+
+        System.out.println("Zipper: ");
+        printLinkedList(zipperLists(zipperA, zipperQ));
+        System.out.println("Zipper Recursive: ");
+//        printLinkedList(zipperListsRecursive(zipperA, zipperQ));
     }
 
     public static List<String> linkedListValuesRecursive(MyNode<String> head) {
@@ -75,10 +97,13 @@ public class MyNode<T> {
     private static void printLinkedList(MyNode<String> head) {
         MyNode<String> current = head;
         while (current != null) {
-            System.out.println(current.val);
+            System.out.print(current.val);
+            if (current.next != null) {
+                System.out.print(", ");
+            }
             current = current.next;
         }
-
+        System.out.println();
     }
 
     private static void printLinkedListRecursive(MyNode<String> head) {
@@ -185,5 +210,40 @@ public class MyNode<T> {
         head.next.next = head;
         head.next = null;
         return newHead;
+    }
+
+    public static <T> MyNode<T> zipperLists(MyNode<T> head1, MyNode<T> head2) {
+        MyNode<T> tail = head1;
+        MyNode<T> current1 = head1.next;
+        MyNode<T> current2 = head2;
+        int count = 0;
+
+
+        while (current1 != null && current2 != null) {
+            if (count % 2 == 0) {
+                tail.next = current2;
+                current2 = current2.next;
+            } else {
+                tail.next = current1;
+                current1 = current1.next;
+            }
+            tail = tail.next;
+            count++;
+        }
+
+        tail.next = (current1 != null) ? current1 : current2;
+        return head1;
+    }
+
+    public static <T> MyNode<T> zipperListsRecursive(MyNode<T> head1, MyNode<T> head2) {
+        if (head1 == null && head2 == null) return null;
+        if (head1 == null) return head2;
+        if (head2 == null) return head1;
+
+        MyNode<T> next1 = head1.next;
+        MyNode<T> next2 = head2.next;
+        head1.next = head2;
+        head2.next = zipperListsRecursive(next1, next2);
+        return head1;
     }
 }
