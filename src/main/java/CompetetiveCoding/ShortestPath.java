@@ -116,4 +116,19 @@ public class ShortestPath {
 
     }
 
+    private static Map<Pair<Integer, Integer>, Integer> buildGraph(List<List<Integer>> edges, Integer a) {
+        Map<Pair<Integer, Integer>, Integer> graph = new HashMap<>();
+
+        for (List<Integer> edge : edges) {
+            Integer first = edge.get(0);
+            Integer second = edge.get(1);
+            Integer distance = edge.get(2);
+
+            graph.computeIfAbsent(new Pair<>(first, second), k -> distance);
+        }
+
+        return graph;
+    }
+
+
 }
